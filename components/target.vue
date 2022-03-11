@@ -103,9 +103,7 @@
                 <div class="card-header-title p-3">
                   <div class="is-flex is-align-items-center">
                     <div>Notizen</div>
-                    <div class="ml-1">
-                      
-                    </div>
+                    <div class="ml-1"></div>
                   </div>
                 </div>
                 <div class="card-header-icon p-3 px-4">
@@ -117,22 +115,18 @@
               <div
                 v-for="note in target.notes"
                 :key="target.notes.indexOf(note)"
-                class="is-flex is-justify-content-space-between box p-4 mb-2"
+                class="p-4 mb-2"
               >
-                <div
-                  style="width: 100%"
-                  v-html="
-                    note
-                      .replaceAll('<', '&gt;')
-                      .replaceAll('>', '&lt;')
-                      .replaceAll('\n', '<br />')
-                  "
-                ></div>
-                <div
-                  class="ml-2 mouse"
-                  @click="removeNote(target.notes.indexOf(note))"
-                >
-                  <b-icon icon="trash" type="is-danger" size="is-small" />
+                <b-input
+                  size="is-small"
+                  type="textarea"
+                  style="min-height: 0"
+                  :value="note"
+                  expanded
+                  disabled
+                />
+                <div class="has-text-right help">
+                  <a @click="removeNote(target.notes.indexOf(note))">löschen</a>
                 </div>
               </div>
               <div

@@ -39,5 +39,12 @@
         </b-message></nuxt-link
       >
     </div>
+    <div class="mt-6">
+      <b-message icon="bug" :has-icon="true" type="is-dark"
+        ><b>Problem entdeckt?</b><br />
+        Melde dieses bitte an
+        <a href="https://ffftre.es/elias" target="_blank">Elias</a>.
+      </b-message>
+    </div>
   </div>
 </template>

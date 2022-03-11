@@ -12,9 +12,9 @@ function transform(c: any) {
   if (c.voting) {
     const voting = c.voting.split('/')
     c.voting = {
-      '+': voting[0],
-      '0': voting[1],
-      '-': voting[2],
+      '+': parseInt(voting[0]),
+      '0': parseInt(voting[1]),
+      '-': parseInt(voting[2]),
     }
   }
   return c
@@ -62,14 +62,22 @@ export const actions: any = {
     return target
   },
   async update({ commit }: any, data: any) {
-    const target = await this.$axios.$put(
+    const c = await this.$axios.$put(
       '/cases/' + data.id,
       Object.assign(data, { id: undefined })
     )
-    commit('putTarget', target)
+    commit('putCase', c)
   },
-  async delete({ commit }: any, chatId: string) {
-    await this.$axios.$delete('/targets/' + chatId)
-    commit('removeTarget', chatId)
+  async delete({ commit }: any, caseId: string) {
+    await this.$axios.$delete('/cases/' + caseId)
+    commit('removeCase', caseId)
+  },
+  async addAttachment({ commit }: any, data: any) {
+    commit(
+      'putCase',
+      await this.$axios.$post(
+        `attachments/${data.attachmentId}/links/cases/${data.caseId}`
+      )
+    )
   },
 }

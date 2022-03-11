@@ -171,11 +171,13 @@ export default class CasesPage extends Vue {
     return this.$store.state.cases.all.length - this.cases.length
   }
 
-  created() {
-    this.$store.dispatch('chats/loadAll')
-    this.$store.dispatch('targets/loadAll')
-    this.$store.dispatch('users/loadAll')
-    this.$store.dispatch('cases/loadAll')
+  async created() {
+    await Promise.all([
+      this.$store.dispatch('chats/loadAll'),
+      this.$store.dispatch('targets/loadAll'),
+      this.$store.dispatch('users/loadAll'),
+    ])
+    await this.$store.dispatch('cases/loadAll')
   }
 
   resetFilters() {

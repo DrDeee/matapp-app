@@ -53,7 +53,7 @@ export default Vue.extend({
 })
 </script>
 <style>
-.field input.input[disabled], button.button[disabled] {
+.field input.input[disabled], textarea.textarea[disabled], button.button[disabled] {
   cursor: default;
 }
 </style>

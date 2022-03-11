@@ -152,21 +152,21 @@
     <b-collapse animation="slide" :open="saveVoting" class="mb-5">
       <b-field>
         <b-numberinput
-          v-model="voting['+']"
+          v-model="votePlus"
           :max="10"
           :min="0"
           size="is-small"
           class="mx-1"
         ></b-numberinput>
         <b-numberinput
-          v-model="voting['0']"
+          v-model="voteNull"
           size="is-small"
           :max="10"
           :min="0"
           class="mx-1"
         ></b-numberinput>
         <b-numberinput
-          v-model="voting['-']"
+          v-model="voteMinus"
           size="is-small"
           :max="10"
           :min="0"
@@ -251,11 +251,9 @@ export default class CaseEditor extends Vue {
   startDate: Date = getNextQuarterDate()
   endDate: Date | null = null
   notes: string | null = null
-  voting: { '+': number; '0': number; '-': number } = {
-    '+': 0,
-    '0': 0,
-    '-': 0,
-  }
+  votePlus: number = 0
+  voteNull: number = 0
+  voteMinus: number = 0
 
   saveVoting: boolean = false
 
@@ -309,8 +307,8 @@ export default class CaseEditor extends Vue {
         endDate: this.endDate ? this.endDate.getTime() : undefined,
         notes: this.notes || null,
         voting: this.saveVoting
-          ? `${this.voting['+']}/${this.voting['0']}/${this.voting['-']}`
-          : undefined,
+          ? `${this.votePlus}/${this.voteNull}/${this.voteMinus}`
+          : null,
       })
     )
   }
@@ -326,6 +324,9 @@ export default class CaseEditor extends Vue {
         case 'startDate':
         case 'endDate':
           value = this.acase[key].getTime()
+          break
+        case 'voting':
+          value = (this.acase[key]) ? `${this.acase[key]['+']}/${this.acase[key]['0']}/${this.acase[key]['-']}` : null
           break
         default:
           value = this.acase[key]
@@ -348,15 +349,27 @@ export default class CaseEditor extends Vue {
   }
 
   get usedVotes() {
-    return this.voting['+'] + this.voting['0'] + this.voting['-']
+    return this.votePlus + this.voteNull + this.voteMinus
   }
 
   created() {
     this.$store.dispatch('users/loadAll')
     this.$store.dispatch('targets/loadAll')
     this.$store.dispatch('chats/loadAll')
-    if (this.acase.id)
-      Object.assign(this, this.acase, { target: this.acase.target.id, saveVoting: this.acase.voting !== undefined })
+    if (this.acase.id) {
+      Object.assign(this, this.acase, {
+        target: this.acase.target.id,
+        voting: undefined,
+      })
+      this.saveVoting = !(
+        this.acase.voting === undefined || this.acase.voting === null
+      )
+      if (this.acase.voting) {
+        this.votePlus = this.acase.voting['+']
+        this.voteNull = this.acase.voting['0']
+        this.voteMinus = this.acase.voting['-']
+      }
+    }
   }
 
   async create() {

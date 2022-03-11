@@ -47,7 +47,7 @@
                 :icon="messengerIcon.icon"
                 size="is-small"
                 class="mr-2"
-                :class="{ invisible: messengerIcon.invisible }"
+                :class="{ invisible: false }"
               />
               {{ chat.messenger }}
             </div>
@@ -115,11 +115,19 @@
                 Keine Moderator:innen :(
               </div>
               <div class="mt-3">
-                <user-selector
-                  :is-small="true"
+                <b-select
+                  size="is-small"
                   placeholder="Moderator:in hinzufügen"
+                  expanded
                   @input="addUser($event)"
-                />
+                >
+                  <option v-for="user in users" :key="user.id" :value="user.id">
+                    {{ user.displayName ? user.displayName : user.userName }}
+                  </option>
+                  <option v-if="users.length === 0" disabled>
+                    Keine weiteren Moderator:innen
+                  </option>
+                </b-select>
               </div>
             </div>
           </div>
@@ -134,8 +142,9 @@
           <div v-if="isDeleting" class="mouse ml-1" @click="deleteChat()">
             <b-icon icon="check" size="is-small" type="is-success" />
           </div>
-        </div></div
-    ></b-collapse>
+        </div>
+      </div>
+    </b-collapse>
   </div>
 </template>
 
@@ -165,6 +174,12 @@ export default class ChatComponent extends Vue {
       default:
         return { pack: 'fab', icon: this.chat.messenger }
     }
+  }
+
+  get users() {
+    return this.$store.state.users.all.filter(
+      (u: any) => !(this.chat.members as any[]).map((m) => m.id).includes(u.id)
+    )
   }
 
   isUrl(url: string) {

@@ -21,6 +21,7 @@ export default Vue.extend({
     back() {
       switch (this.$route.name) {
         case 'cases-edit':
+        case 'cases-delete':
         case 'cases-new': {
           this.$router.push('/cases')
           return

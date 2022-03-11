@@ -1,11 +1,16 @@
 <template>
   <div :id="myCase.id" class="card mb-3">
     <div
-      class="card-header is-flex p-3 px-5 is-justify-content-space-between is-clickable"
-      @click="open = !open"
+      class="card-header is-flex p-3 px-5 is-justify-content-space-between"
+      :class="{ 'is-clickable': !slim }"
+      @click="open = slim || !open"
     >
       <div class="is-flex is-align-items-center">
-        <b-icon :icon="open ? 'chevron-up' : 'chevron-down'" size="is-small" />
+        <b-icon
+          v-if="!slim"
+          :icon="open ? 'chevron-up' : 'chevron-down'"
+          size="is-small"
+        />
         <div class="ml-4">
           {{ targetName }}
         </div>
@@ -55,14 +60,14 @@
               />
             </b-field>
           </div>
-          <div class="column">
+          <div v-if="!slim" class="column">
             <b-field label="Chat" label-position="on-border">
               <b-input :value="chat.name" expanded disabled size="is-small" />
             </b-field>
           </div>
         </div>
         <div class="columns">
-          <div class="column">
+          <div v-if="!slim" class="column">
             <b-field label="Kommunikator:in" label-position="on-border">
               <b-input
                 :value="
@@ -76,7 +81,7 @@
               />
             </b-field>
           </div>
-          <div class="column">
+          <div v-if="!slim" class="column">
             <b-field label="Exekutor:in" label-position="on-border">
               <b-input
                 :value="
@@ -156,8 +161,13 @@
             </b-field>
           </div>
         </div>
+        <!--         <div class="columns">
+          <div class="column">
+            <attachments :attachments="myCase.attachments" :case-id="myCase.id" />
+          </div>
+        </div> -->
       </div>
-      <div class="card-footer">
+      <div v-if="!slim" class="card-footer">
         <a
           class="card-footer-item"
           @click="$router.push('/cases/edit?id=' + myCase.id)"
@@ -166,11 +176,12 @@
         </a>
         <a
           class="card-footer-item"
-          @click="$router.push('/cases/edit?id=' + myCase.id)"
+          @click="$router.push('/cases/delete?id=' + myCase.id)"
         >
-          <b-icon icon="trash" size="is-small" type="is-danger" />
+          <b-icon icon="trash" size="is-small" type="is-dark" />
         </a>
       </div>
+      <slot name="bottom" />
     </b-collapse>
   </div>
 </template>
@@ -183,7 +194,10 @@ export default class CaseComponent extends Vue {
   @Prop({ required: true })
   myCase!: any
 
-  open: boolean = false
+  @Prop({ required: false, default: () => false })
+  slim!: boolean
+
+  open: boolean = this.slim || false
 
   get target() {
     return (
