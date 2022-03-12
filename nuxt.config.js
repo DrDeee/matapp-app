@@ -26,8 +26,23 @@ export default {
   ],
 
   pwa: {
+    icon: {
+      source: '~/static/icon.png'
+    },
+    meta: {
+      title: 'MAT App',
+      author: 'Elias Bistry',
+      theme_color: '#171141',
+      ogSiteName: 'MAT App',
+      ogTitle: 'Moderations- und Awarenessteam',
+      ogImage: true,
+      ogHost: 'https://mat.deee4future.me'
+    },
     manifest: {
       lang: 'de',
+      name: 'Moderations- und Awarenessteam-App',
+      short_name: 'MAT-App',
+      background_color: '#171141'
     },
   },
   buefy: {

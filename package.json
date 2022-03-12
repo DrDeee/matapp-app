@@ -1,6 +1,7 @@
 {
   "name": "mat-app",
   "version": "1.0.0",
+  "description": "Hier verwaltet das MAT die Awareness-Vorfälle der Bundesebene von FFF De.",
   "private": true,
   "scripts": {
     "dev": "nuxt",
