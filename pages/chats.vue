@@ -39,11 +39,11 @@
                 placeholder="Der Einladungslink..."
               />
             </b-field>
-            <!--             <b-field>
+            <b-field>
               <b-checkbox v-model="addAutomatic" size="is-small"
                 >Mich automatisch als Moderator:in hinzufügen</b-checkbox
               >
-            </b-field> -->
+            </b-field>
           </div>
           <div class="is-flex">
             <div class="mouse" @click="reset()">
@@ -97,7 +97,7 @@ export default class ChatsPage extends Vue {
   name: string = ''
   messenger: string = 'whatsapp'
   inviteUrl: string = ''
-  addAutomatic: boolean = false
+  addAutomatic: boolean = true
 
   filterOpen: boolean = false
   nameFilter: string = ''
@@ -143,7 +143,7 @@ export default class ChatsPage extends Vue {
     this.name = ''
     this.messenger = 'whatsapp'
     this.inviteUrl = ''
-    this.addAutomatic = false
+    this.addAutomatic = true
   }
 
   resetFilters() {
@@ -157,7 +157,7 @@ export default class ChatsPage extends Vue {
       if (this.addAutomatic)
         this.$store.dispatch('chats/addUser', {
           chatId: chat.id,
-          userId: '622115f9e7a964911033aa17',
+          userId: (this.$auth as any).user.id,
         })
       this.reset()
     })
