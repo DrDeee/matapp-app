@@ -23,11 +23,6 @@
         </template>
       </b-field>
     </div>
-    <div v-else>
-      <div>
-        <b-loading active :is-full-page="false" />
-      </div>
-    </div>
   </Page>
 </template>
 <script lang="ts">
@@ -44,20 +39,12 @@ export default class ProfilePage extends Vue {
   editName: boolean = false
   newName?: string
   created() {
-    this.$axios.$get('/users/me').then((user) => {
-      setTimeout(() => {
-        this.user = user
-        this.newName = JSON.parse(JSON.stringify(user.displayName))
-      }, 1000)
-    })
+    this.user = this.$auth.user
   }
 
   reset() {
     this.editName = false
-    this.$axios.$get('/users/me').then((user) => {
-      this.user = user
-      this.newName = JSON.parse(JSON.stringify(user.displayName))
-    })
+    this.user = this.$auth.user
   }
 
   rename() {
@@ -67,6 +54,7 @@ export default class ProfilePage extends Vue {
       .then((user) => {
         this.editName = false
         this.user = user
+        this.$auth.setUser(user)
         this.newName = JSON.parse(JSON.stringify(user.displayName))
       })
   }
