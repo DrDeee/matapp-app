@@ -39,7 +39,8 @@ export default class ProfilePage extends Vue {
   editName: boolean = false
   newName?: string
   created() {
-    this.user = this.$auth.user
+    this.user = JSON.parse(JSON.stringify(this.$auth.user))
+    this.newName = this.user.displayName
   }
 
   reset() {
@@ -53,8 +54,8 @@ export default class ProfilePage extends Vue {
       .$put('/users/me', { displayName: this.newName })
       .then((user) => {
         this.editName = false
-        this.user = user
         this.$auth.setUser(user)
+        this.user = JSON.parse(JSON.stringify(this.$auth.user))
         this.newName = JSON.parse(JSON.stringify(user.displayName))
       })
   }

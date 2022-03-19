@@ -1,7 +1,16 @@
 <template>
   <div class="columns is-centered">
     <div class="column">
-      <b-message type="is-info" title="Willkommen bei der MAT-App!" :closable="false">
+      <div class="columns is-centered mt-3 is-hidden-touch">
+        <div class="column is-half">
+          <img src="~/assets/img/login.svg" />
+        </div>
+      </div>
+      <b-message
+        type="is-info"
+        title="Willkommen bei der MAT-App!"
+        :closable="false"
+      >
         <p class="mb-2">
           Hier verwaltet das Moderations- und Awarenessteam alle
           Awarenessvorfälle und alle kritischen Situationen, die in den Gruppen
