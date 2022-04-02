@@ -40,7 +40,6 @@ export default {
     },
     manifest: {
       lang: 'de',
-      name: 'Moderations- und Awarenessteam-App',
       short_name: 'MAT-App',
       background_color: '#171141'
     },
