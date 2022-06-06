@@ -3,7 +3,7 @@ FROM node:16-alpine as builder
 COPY . .
 
 RUN rm -rf node_modules && \
-    yarn install --frozen-lockfile &&\
+    yarn install &&\
     yarn run build
 
 FROM node:16-alpine as runner
