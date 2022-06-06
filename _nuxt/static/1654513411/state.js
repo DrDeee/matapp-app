@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a,b){return {staticAssetsBase:"\u002F_nuxt\u002Fstatic\u002F1654513411",layout:"default",error:a,state:a,serverRendered:false,routePath:b,config:{axios:{baseURL:"https:\u002F\u002Fmatapi.messenger.fridaysforfuture.dev\u002Fapi\u002Fv1"},_app:{basePath:b,assetsPath:"\u002F_nuxt\u002F",cdnURL:a}}}}(null,"\u002F"));
