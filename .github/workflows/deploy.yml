@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: Generate static files
         run: yarn run generate
       - name: Deploy
