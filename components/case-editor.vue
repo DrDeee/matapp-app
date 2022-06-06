@@ -1,5 +1,13 @@
 <template>
   <div>
+    <b-field label="Kurze Beschreibung*" label-position="on-border" class="mb-5">
+      <b-input v-model="description" size="is-small" expanded has-counter maxlength="100" />
+      <template #message>
+        <div class="has-text-centered help">
+          Kurze Beschreibung für die Anzeige in der MAT App.
+        </div>
+      </template>
+    </b-field>
     <b-field label="Person*" label-position="on-border" class="mb-5">
       <b-select
         v-model="target"
@@ -228,6 +236,7 @@ function getNextQuarterDate() {
 }
 
 const requiredFields: string[] = [
+  'description',
   'target',
   'type',
   'location',
@@ -244,6 +253,7 @@ export default class CaseEditor extends Vue {
 
   target: string | null = null
   type: string | null = null
+  description: string | null = null
   location: string | null = null
   annunciator: string | null = null
   executor: string | null = null
@@ -299,6 +309,7 @@ export default class CaseEditor extends Vue {
       JSON.stringify({
         target: this.target || undefined,
         type: this.type || undefined,
+        description: this.description || undefined,
         location: this.location || undefined,
         annunciator: this.annunciator || undefined,
         executor: this.executor || undefined,
@@ -326,7 +337,9 @@ export default class CaseEditor extends Vue {
           value = this.acase[key].getTime()
           break
         case 'voting':
-          value = (this.acase[key]) ? `${this.acase[key]['+']}/${this.acase[key]['0']}/${this.acase[key]['-']}` : null
+          value = this.acase[key]
+            ? `${this.acase[key]['+']}/${this.acase[key]['0']}/${this.acase[key]['-']}`
+            : null
           break
         default:
           value = this.acase[key]
@@ -374,7 +387,7 @@ export default class CaseEditor extends Vue {
 
   async create() {
     await this.$store.dispatch('cases/create', this.content)
-    this.$router.push('/cases')
+    this.$router.push('/')
   }
 
   async update() {
@@ -382,7 +395,7 @@ export default class CaseEditor extends Vue {
       'cases/update',
       Object.assign({ id: this.acase.id }, this.updateContent)
     )
-    this.$router.push('/cases#' + this.acase.id)
+    this.$router.push('/#' + this.acase.id)
   }
 }
 </script>

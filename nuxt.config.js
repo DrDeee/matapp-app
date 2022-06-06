@@ -16,7 +16,7 @@ export default {
   css: ['~/assets/scss/theme.scss'],
   plugins: [],
   components: true,
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/stylelint-module'],
+  buildModules: ['@nuxt/typescript-build'],
   modules: [
     'nuxt-buefy',
     'nuxt-fontawesome',
@@ -70,6 +70,7 @@ export default {
           'faChevronUp',
           'faCloudArrowDown',
           'faEdit',
+          'faEye',
           'faFilter',
           'faLink',
           'faLock',

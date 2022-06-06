@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <div class="card-header-icon" @click="back()">
+      <div v-if="navBack" class="card-header-icon" @click="back()">
         <b-icon size="is-small" icon="arrow-left" />
       </div>
       <div class="card-header-title">{{ title }}</div>
@@ -16,20 +16,11 @@ import Vue from 'vue'
 export default Vue.extend({
   props: {
     title: { type: String, required: true },
+    navBack: { type: Boolean, required: false, default: true },
   },
   methods: {
     back() {
-      switch (this.$route.name) {
-        case 'cases-edit':
-        case 'cases-delete':
-        case 'cases-new': {
-          this.$router.push('/cases')
-          return
-        }
-        default: {
-          this.$router.push('/')
-        }
-      }
+      this.$router.push('/')
     },
   },
 })

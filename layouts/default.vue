@@ -13,8 +13,8 @@
         </b-navbar-item>
       </template>
       <template v-if="$auth.loggedIn" #start>
-        <b-navbar-item tag="router-link" :to="{ path: '/cases' }">
-          Awarenessvorfälle
+        <b-navbar-item tag="router-link" :to="{ path: '/' }">
+          Vorfälle
         </b-navbar-item>
         <b-navbar-item tag="router-link" :to="{ path: '/targets' }">
           Personen

@@ -13,7 +13,7 @@
           <div class="card-footer">
             <a
               class="card-footer-item"
-              @click="$router.push('/cases#' + myCase.id)"
+              @click="$router.push('/#' + myCase.id)"
               >Abbrechen</a
             >
             <a class="card-footer-item" @click="deleteCase()">Löschen</a>
@@ -38,7 +38,7 @@ export default class CaseEditPage extends Vue {
   notFound: boolean = false
 
   async created() {
-    if (!this.$route.query.id) this.$router.push('/cases')
+    if (!this.$route.query.id) this.$router.push('/')
     else {
       try {
         this.myCase = await this.$store.dispatch(
@@ -53,7 +53,7 @@ export default class CaseEditPage extends Vue {
 
   async deleteCase() {
     await this.$store.dispatch('cases/delete', this.myCase.id)
-    this.$router.push('/cases')
+    this.$router.push('/')
   }
 }
 </script>

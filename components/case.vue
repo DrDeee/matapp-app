@@ -2,18 +2,16 @@
   <div :id="myCase.id" class="card mb-3">
     <div
       class="card-header is-flex p-3 px-5 is-justify-content-space-between"
-      :class="{ 'is-clickable': !slim }"
+      :class="{ 'is-clickable': !slim && !forceOpen }"
       @click="open = slim || !open"
     >
-      <div class="is-flex is-align-items-center">
+      <div class="is-flex is-align-items-center" >
         <b-icon
-          v-if="!slim"
+          v-if="!slim || !forceOpen"
           :icon="open ? 'chevron-up' : 'chevron-down'"
           size="is-small"
         />
-        <div class="ml-4">
-          {{ targetName }}
-        </div>
+        <div class="ml-4">{{ myCase.description }} | {{ targetName }}</div>
       </div>
 
       <div class="is-flex is-align-items-center">
@@ -26,13 +24,25 @@
         />
       </div>
     </div>
-    <b-collapse animation="slide" :open="open">
+    <b-collapse animation="slide" :open="open || forceOpen">
       <div class="card-content">
         <div class="columns">
           <div class="column">
             <b-field label="Art der Maßnahme" label-position="on-border">
               <b-input
                 :value="myCase.type === 'ban' ? 'Bann' : 'Verwarnung'"
+                expanded
+                disabled
+                size="is-small"
+              />
+            </b-field>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <b-field label="Kurze Beschreibung" label-position="on-border">
+              <b-input
+                :value="myCase.description"
                 expanded
                 disabled
                 size="is-small"
@@ -193,6 +203,9 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class CaseComponent extends Vue {
   @Prop({ required: true })
   myCase!: any
+
+  @Prop({ required: false, default: false })
+  forceOpen!: boolean
 
   @Prop({ required: false, default: () => false })
   slim!: boolean
