@@ -16,7 +16,7 @@
 
       <div class="is-flex is-align-items-center">
         <div class="mr-4">
-          {{ myCase.type === 'warn' ? 'Verwarnung' : 'Bann' }}
+          {{ myCase.type === 'warn' ? 'Verwarnung' : 'Ausschluss' }}
         </div>
         <b-icon
           type="is-danger"
@@ -30,7 +30,7 @@
           <div class="column">
             <b-field label="Art der Maßnahme" label-position="on-border">
               <b-input
-                :value="myCase.type === 'ban' ? 'Bann' : 'Verwarnung'"
+                :value="myCase.type === 'ban' ? 'Ausschluss' : 'Verwarnung'"
                 expanded
                 disabled
                 size="is-small"

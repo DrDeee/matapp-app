@@ -33,7 +33,7 @@
         size="is-small"
       >
         <option value="warn">Offizielle Verwarnung</option>
-        <option value="ban">Bann</option>
+        <option value="ban">Ausschluss</option>
       </b-select>
       <template #message>
         <div class="has-text-centered help">

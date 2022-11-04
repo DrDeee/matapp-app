@@ -47,7 +47,7 @@
               <b-field label="Typ" label-position="on-border">
                 <b-select v-model="typeFilter" expanded size="is-small">
                   <option value="warn">Verwarnung</option>
-                  <option value="ban">Bann</option>
+                  <option value="ban">Ausschluss</option>
                 </b-select>
               </b-field>
               <b-field label="Kommunikator:in" label-position="on-border">
