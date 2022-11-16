@@ -2,7 +2,7 @@ import config from './config'
 
 export default {
   ssr: process.env.SSR || true,
-  target: process.env.TARGET || 'server',
+  target: process.env.TARGET || 'static',
   head: {
     title: 'MAT App',
     meta: [

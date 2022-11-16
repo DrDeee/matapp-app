@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Generate static files
-        run: yarn run generate
+        run: yarn generate
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
