@@ -1,3 +1,10 @@
+/**
+  * vue-class-component v7.2.6
+  * (c) 2015-present Evan You
+  * @license MIT
+  */
+
+
 /*!
  * Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -15,13 +22,6 @@
  * (c) 2018-present egoist <0x142857@gmail.com>
  * Released under the MIT License.
  */
-
-
-/**
-  * vue-class-component v7.2.6
-  * (c) 2015-present Evan You
-  * @license MIT
-  */
 
 
 /**
@@ -49,3 +49,17 @@
  * (c) 2021 Evan You
  * @license MIT
  */
+
+
+/**
+  * vue-class-component v7.2.6
+  * (c) 2015-present Evan You
+  * @license MIT
+  */
+
+
+/**
+  * vue-class-component v7.2.6
+  * (c) 2015-present Evan You
+  * @license MIT
+  */
