@@ -24,13 +24,6 @@
  */
 
 
-/**
-  * vue-class-component v7.2.6
-  * (c) 2015-present Evan You
-  * @license MIT
-  */
-
-
 /*!
  * Vue.js v2.7.14
  * (c) 2014-2022 Evan You
@@ -49,6 +42,13 @@
  * (c) 2021 Evan You
  * @license MIT
  */
+
+
+/**
+  * vue-class-component v7.2.6
+  * (c) 2015-present Evan You
+  * @license MIT
+  */
 
 
 /**
