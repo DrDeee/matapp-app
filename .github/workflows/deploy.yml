@@ -6,7 +6,7 @@ jobs:
     env:
       API_HOST: https://matapi.messenger.fridaysforfuture.dev
       SSR: false
-      BASE_PATH: "/matapp-app/"
+      BASE_PATH: "/"
       TARGET: static
       NUXT_TELEMETRY_DISABLED: 1
     steps:
